@@ -27,5 +27,6 @@ venv/
 .env.local
 
 # etc
+logs/
 plan.md
 API.md
