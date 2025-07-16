@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Reviewer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI Code Reviewer</h1>
+            <p>Get instant feedback on your Python code using AI</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section">
+                <h2>Enter Your Python Code</h2>
+                <form id="review-form">
+                    <div class="form-group">
+                        <label for="code-input">Python Code:</label>
+                        <textarea 
+                            id="code-input" 
+                            name="code" 
+                            placeholder="# Enter your Python code here...
+def hello_world():
+    print('Hello, World!')
+
+hello_world()"
+                            rows="15"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn">
+                        <span class="btn-text">Get Code Review</span>
+                        <span class="loading-spinner" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="37.7" stroke-dashoffset="37.7">
+                                    <animateTransform attributeName="transform" type="rotate" values="0 8 8;360 8 8" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+            </section>
+
+            <section class="results-section" id="results-section" style="display: none;">
+                <h2>Code Review Results</h2>
+                <div class="results-content" id="results-content"></div>
+            </section>
+
+            <section class="error-section" id="error-section" style="display: none;">
+                <h2>Error</h2>
+                <div class="error-content" id="error-content"></div>
+                <button class="retry-btn" id="retry-btn">Try Again</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
