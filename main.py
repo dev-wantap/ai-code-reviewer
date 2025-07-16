@@ -1,6 +1,4 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from openai import OpenAI
 import os
@@ -9,8 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(title="AI Code Reviewer", version="1.0.0")
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 class CodeReviewRequest(BaseModel):
     code: str
@@ -22,10 +18,6 @@ client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
     base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
 )
-
-@app.get("/")
-async def root():
-    return FileResponse("static/index.html")
 
 @app.post("/review", response_model=CodeReviewResponse)
 async def review_code(request: CodeReviewRequest):

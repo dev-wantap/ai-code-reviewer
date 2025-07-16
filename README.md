@@ -10,17 +10,67 @@ A simple web application that provides AI-powered code reviews for Python code u
 - **Responsive Design**: Works on desktop and mobile devices
 - **No Registration Required**: Simple, one-time use without user accounts
 - **Flexible API Support**: Works with OpenAI and other OpenAI-compatible services
+- **Containerized Deployment**: Ready-to-deploy Docker container with nginx and FastAPI
+- **Production Ready**: Optimized nginx configuration with process management
 
 ## Quick Start
 
-### Prerequisites
+### Option 1: Docker Deployment (Recommended)
 
+#### Prerequisites
+- Docker and Docker Compose
+
+#### Installation & Running
+
+1. Clone the project:
+```bash
+git clone https://github.com/dev-wantap/ai-code-reviewer.git
+cd ai-code-reviewer
+```
+
+2. Set up environment variables:
+```bash
+# Copy the example .env file and configure your API settings
+cp .env.example .env
+# Edit .env with your API key and preferred settings
+```
+
+3. Build and run with Docker Compose:
+```bash
+# Build and start the container
+docker-compose up --build
+
+# Or run in background
+docker-compose up -d --build
+```
+
+4. Open your browser and navigate to:
+```
+http://localhost
+```
+
+#### Alternative Docker Commands
+
+```bash
+# Build the image manually
+docker build -t ai-code-reviewer .
+
+# Run the container
+docker run -p 80:80 --env-file .env ai-code-reviewer
+
+# Stop the container
+docker-compose down
+```
+
+### Option 2: Local Development
+
+#### Prerequisites
 - Python 3.8 or higher
 - uv package manager (recommended) or pip
 
-### Installation
+#### Installation
 
-1. Clone or download the project:
+1. Clone the project:
 ```bash
 git clone https://github.com/dev-wantap/ai-code-reviewer.git
 cd ai-code-reviewer
@@ -42,7 +92,7 @@ cp .env.example .env
 # Edit .env with your API key and preferred settings
 ```
 
-### Running the Application
+#### Running the Application
 
 1. Start the server:
 ```bash
@@ -84,7 +134,11 @@ http://localhost:8000
 ## Project Structure
 
 ```
-ai-code-reviewer-simple/
+ai-code-reviewer/
+├── Dockerfile           # Multi-stage Docker build
+├── docker-compose.yml   # Docker Compose configuration
+├── nginx.conf           # nginx reverse proxy configuration
+├── supervisord.conf     # Process management configuration
 ├── main.py              # FastAPI application and API endpoints
 ├── static/
 │   ├── index.html       # Web interface
@@ -97,6 +151,9 @@ ai-code-reviewer-simple/
 
 ## Technology Stack
 
+- **Containerization**: Docker with nginx:alpine base image
+- **Reverse Proxy**: nginx for static file serving and API proxying
+- **Process Management**: Supervisor for managing multiple processes
 - **Backend**: FastAPI with Uvicorn ASGI server
 - **Frontend**: Vanilla HTML, CSS, and JavaScript
 - **AI Service**: OpenAI-compatible APIs via OpenAI client library
