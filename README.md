@@ -13,6 +13,10 @@ A simple web application that provides AI-powered code reviews for Python code u
 - **Containerized Deployment**: Ready-to-deploy Docker container with nginx and FastAPI
 - **Production Ready**: Optimized nginx configuration with process management
 
+## Screenshot
+
+![AI Code Reviewer Interface](example.JPEG)
+
 ## Quick Start
 
 ### Option 1: Docker Deployment (Recommended)
